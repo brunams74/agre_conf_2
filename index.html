@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E.ON Next - Demo Journey</title>
+    <style>
+        :root {
+            --eon-purple: #2d1a47;
+            --eon-red: #e63946;
+            --eon-bg: #f3f4f6;
+            --outlook-blue: #0078d4;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; background-color: var(--eon-bg); }
+
+        /* --- NAVIGATION --- */
+        .eon-nav { 
+            background: white; padding: 10px 40px; border-bottom: 1px solid #ddd; 
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--eon-red); }
+        .logo span { color: var(--eon-purple); font-weight: 400; font-size: 0.9rem; margin-left: -2px; }
+        .nav-links { display: flex; gap: 20px; font-size: 0.9rem; margin-left: 30px; }
+        .nav-links a { text-decoration: none; color: #666; font-weight: 500; }
+
+        /* --- OUTLOOK SIMULATION --- */
+        #page-outlook { display: flex; height: 100vh; background: white; width: 100%; }
+        .outlook-sidebar { width: 200px; background: #f3f2f1; border-right: 1px solid #ddd; padding: 20px; font-size: 0.9rem; }
+        .outlook-list { width: 350px; border-right: 1px solid #ddd; background: #faf9f8; }
+        .email-item { padding: 20px; border-bottom: 1px solid #eee; cursor: pointer; }
+        .email-item.active { border-left: 4px solid var(--outlook-blue); background: #f0f7ff; }
+        .email-view { flex: 1; padding: 40px; overflow-y: auto; }
+
+        /* --- PORTAL CONTENT --- */
+        .portal-area { display: none; }
+        .page-content { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .card { background: white; border-radius: 12px; padding: 40px; border: 1px solid #ddd; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        
+        .outcome-header { display: flex; align-items: flex-start; gap: 30px; margin-bottom: 30px; }
+        .outcome-icon { width: 80px; height: 80px; }
+        .outcome-text { font-size: 1.2rem; line-height: 1.5; }
+
+        .bold-label { font-weight: bold; }
+        .btn-primary { background-color: var(--eon-purple); color: white; border: none; padding: 14px 50px; font-size: 1rem; font-weight: 700; border-radius: 100px; cursor: pointer; display: inline-block; text-decoration: none; }
+        
+        /* --- GATEWAY PROMO SECTION --- */
+        .gateway-promo { background: #fff; padding: 20px; border: 1px solid #e1dfdd; border-radius: 8px; margin: 30px 0; }
+        .gateway-promo h3 { color: var(--eon-red); margin-top: 0; font-size: 1.1rem; }
+        .gateway-promo ul { padding-left: 20px; margin: 10px 0; font-size: 0.9rem; }
+        .gateway-promo b { color: var(--eon-purple); }
+
+        /* --- UTILITIES --- */
+        .hidden { display: none; }
+        .demo-footer { margin-top: 60px; padding-top: 20px; border-top: 1px dashed #ccc; text-align: center; opacity: 0.5; }
+        .btn-reset { background: none; border: 1px solid #666; color: #666; padding: 6px 15px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+        
+        .email-box { max-width: 700px; color: #323130; font-size: 0.95rem; line-height: 1.5; }
+        .email-section-title { font-weight: bold; margin-top: 20px; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div id="page-outlook">
+        <div class="outlook-sidebar"><b>Outlook</b><br><br>Inbox (1)<br>Sent Items</div>
+        <div class="outlook-list">
+            <div style="padding: 15px; font-weight: bold; border-bottom: 1px solid #ddd;">Focused</div>
+            <div class="email-item active">
+                <div style="font-weight: bold;">E.ON Next</div>
+                <div style="color: var(--outlook-blue); font-size: 0.9rem;">Promise to Pay Confirmation</div>
+                <div style="font-size: 0.8rem; color: #888;">Account: D-123456789</div>
+            </div>
+        </div>
+        <div class="email-view">
+            <div class="email-box">
+                <h2 style="margin-top: 0; font-size: 1.4rem;">Promise to Pay Confirmation - Important Details</h2>
+                <p>Account Number: D-123456789</p>
+                <p>Hello Ahmed Developments ,</p>
+                <p>Thank you for working with us to resolve your outstanding balance. We appreciate your commitment to addressing the financial matter and reaching a mutually agreeable payment resolution today.</p>
+                
+                <div class="email-section-title">Promise to Pay Details</div>
+                <p>Full balance of: £52000 to be paid in one payment<br>
+                Payment due on: 01/04/2026</p>
+
+                <div class="email-section-title">Next Steps</div>
+                <ul>
+                    <li>Adhere to the agreed payment schedule</li>
+                    <li>Ensure all future invoices are paid within standard payment terms</li>
+                    <li>Contact us immediately if you anticipate any difficulties with payment</li>
+                </ul>
+
+                <div class="gateway-promo">
+                    <h3>Introducing Gateway – Our New Developer Portal</h3>
+                    <p>We are pleased to introduce <b>Gateway</b>, our developer portal designed to <b>manage</b> your <b>accounts</b> with <b>ease</b>.</p>
+                    <p>Gateway provides visibility of:</p>
+                    <ul>
+                        <li>All registered <b>sites</b> and <b>plots</b></li>
+                        <li><b>Plot, handover</b> and <b>billing status</b></li>
+                        <li><b>Balance</b> and <b>payments</b></li>
+                    </ul>
+                    <p>In addition, Gateway enables you to <b>Download invoices</b> and <b>Credit notes</b>.</p>
+                </div>
+
+                <div class="email-section-title">Your Declaration</div>
+                <p>I confirm that: All details are correct, I will pay on time, and I understand escalation risks.</p>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <button class="btn-primary" onclick="goToPortal('portal-start')">Review & Confirm Agreement</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="portal-area" class="portal-area">
+        <nav class="eon-nav">
+            <div class="logo">e.on<span>next</span></div>
+            <div class="nav-links">
+                <a href="#">Dashboard</a>
+                <a href="#">Sites</a>
+                <a href="#">Support & feedback</a>
+            </div>
+            <div style="font-size: 0.85rem; color: #666; display: flex; align-items: center; gap: 8px;">
+                <span style="background: #fbbf24; padding: 4px 8px; border-radius: 50%;">👤</span>
+                Dcc Smets2 D... ▾
+            </div>
+        </nav>
+
+        <div class="page-content">
+            <div id="portal-start" class="card" style="text-align: center;">
+                <h1 style="color: var(--eon-purple);">Confirm Your Agreement</h1>
+                <p style="margin: 40px 0; font-size: 1.1rem; line-height: 1.6;">By clicking the button below, I formally agree to the payment terms regarding Account <b>D-123456789</b>.</p>
+                <button class="btn-primary" onclick="switchPortalView('portal-success')">I confirm</button><br>
+                <span style="color: var(--outlook-blue); text-decoration: underline; cursor: pointer; display: inline-block; margin-top: 20px;" onclick="switchPortalView('portal-adjust')">I need to adjust these terms</span>
+            </div>
+
+            <div id="portal-success" class="card hidden">
+                <div class="outcome-header">
+                    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" class="outcome-icon" alt="Check">
+                    <div class="outcome-text">Thank you for confirming your payment agreement!</div>
+                </div>
+                <p>Next steps: Check your inbox for confirmation.</p>
+                
+                <div class="gateway-promo">
+                    <h3>Introducing Gateway – Our New Developer Portal</h3>
+                    <p>Manage your accounts with ease. Visibility of sites, plots, and billing status.</p>
+                </div>
+
+                <div class="demo-footer"><button class="btn-reset" onclick="resetDemo()">↺ RESET TO INBOX</button></div>
+            </div>
+
+            <div id="portal-adjust" class="card hidden">
+                <div class="outcome-header">
+                    <img src="https://cdn-icons-png.flaticon.com/512/564/564619.png" class="outcome-icon" alt="Warning">
+                    <div class="outcome-text">We understand things can change!</div>
+                </div>
+                <p>An agent will contact you soon.</p>
+                
+                <div class="gateway-promo">
+                    <h3>Introducing Gateway – Our New Developer Portal</h3>
+                    <p>Manage your accounts with ease. Visibility of sites, plots, and billing status.</p>
+                </div>
+
+                <div class="demo-footer"><button class="btn-reset" onclick="resetDemo()">↺ RESET TO INBOX</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToPortal(targetId) {
+            document.getElementById('page-outlook').style.display = 'none';
+            document.getElementById('portal-area').style.display = 'block';
+            switchPortalView(targetId);
+        }
+
+        function switchPortalView(viewId) {
+            document.getElementById('portal-start').classList.add('hidden');
+            document.getElementById('portal-success').classList.add('hidden');
+            document.getElementById('portal-adjust').classList.add('hidden');
+            document.getElementById(viewId).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function resetDemo() {
+            document.getElementById('portal-area').style.display = 'none';
+            document.getElementById('page-outlook').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
